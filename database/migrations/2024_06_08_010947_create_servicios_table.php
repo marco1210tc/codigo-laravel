@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('servicios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo');
-            $table->text('description');
-            $table->timestamps();
+            $table->text('descripcion');
+            $table->timestamps();  //agrega los campos created_at & updated_at
         });
     }
 

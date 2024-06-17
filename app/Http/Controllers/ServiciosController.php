@@ -6,6 +6,7 @@ use App\Models\Servicio as ModelsServicio;
 use Illuminate\Http\Request;
 // use DB;
 use App\Models\Servicio;
+use App\Http\Requests\CreateServicioRequest;
 
 class ServiciosController extends Controller
 {
@@ -27,15 +28,36 @@ class ServiciosController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateServicioRequest $request)
     {
-        //
+        // $title = request('name');
+        // $description = request('description');
+        
+        // Servicio::create([
+        //     'titulo'=> $title,  //poner aqui los campos de la tabla, example: 'titulo' y 'descripcion' son los campos en la BD
+        //     'descripcion' => $description
+        // ]);
+        // Servicio::create(request()->all());//no funciona
+
+        // Servicio::create([
+        //     'titulo' => request('name'),
+        //     'descripcion' => request('description')
+        // ]);
+
+        // $camposv = request()->validate([
+        //     'titulo' => 'required',
+        //     'descripcion' => 'required'
+        // ]);
+        // Servicio::create($camposv);
+
+        Servicio::create($request->validated());
+        return redirect()->route('servicios.index');
     }
 
     /**
