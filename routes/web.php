@@ -24,7 +24,7 @@ Route::patch('servicios/{id}', 'App\Http\Controllers\ServiciosController@update'
 Route::post('/servicios', 'App\Http\Controllers\ServiciosController@store')->name('servicios.store');
 
 Route::get('servicios/{id}', 'App\Http\Controllers\ServiciosController@show')->name('servicios.show')->where('id','[0-9]+');
-
+Route::delete('servicios/{servicio}', 'App\Http\Controllers\ServiciosController@destroy')->name('servicios.destroy');
 
 //Route::post('servicios', 'App\Http\Controllers\ServiciosController@update')->name('servicios.update');
 //Route::resource('servicios', ServiciosController::class)->name('POST','servicios.update');
