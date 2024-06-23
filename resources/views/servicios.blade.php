@@ -5,7 +5,14 @@
 @section('content')
   <h2> Servicios </h2>
 
-  <a href="{{route('servicios.create')}}"> Agregar servicio </a>
+  <a style="background-color: green; 
+            padding: 10px 15px; 
+            color: white; 
+            text-decoration: none;
+            border-radius: 7px;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+            " 
+     href="{{route('servicios.create')}}"> + Agregar servicio </a>
 
   <h4> Lista de Servicios </h4>
   @if($servicios)
@@ -20,7 +27,7 @@
   @else
     <h3> No existe ningun servicio que mostrar </h3>
   @endif
-  <div style="width: 200px; height: 20px;">
+  <div style="width: 200px; height: 20px; margin: 35px 0">
     <td colspan="4"> {{ $servicios->links() }} </td>
   </div>
 

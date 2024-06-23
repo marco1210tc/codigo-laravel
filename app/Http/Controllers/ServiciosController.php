@@ -28,7 +28,7 @@ class ServiciosController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('create', ['servicio' => new Servicio]);
     }
 
     /**
@@ -73,15 +73,19 @@ class ServiciosController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('edit', ['servicio' => Servicio::find($id)]);
+        //return view('edit', ['servicio']);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CreateServicioRequest $request, string $id)
     {
-        //
+        $servicio = Servicio::find($id);
+        //Servicio::update($request->validated());
+        $servicio->update($request->validated());
+        return redirect()->route('servicios.show', $servicio);
     }
 
     /**
