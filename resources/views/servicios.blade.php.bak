@@ -1,0 +1,64 @@
+@extends('layout')
+
+@section('title', 'Servicios')
+
+
+<style>
+.pagination {
+    font-size: 14px; /* Cambia el tamaño de la fuente */
+    display: flex;
+    justify-content: center; /* Centra la paginación */
+}
+
+.pagination .page-item .page-link {
+    padding: 5px 10px; /* Ajusta el padding */
+    margin: 2px; /* Ajusta el margen */
+    color: #007bff; /* Color del texto */
+    background-color: #fff; /* Color de fondo */
+    border: 1px solid #dee2e6; /* Borde */
+    border-radius: 4px; /* Esquinas redondeadas */
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff; /* Color de fondo del elemento activo */
+    color: #fff; /* Color del texto del elemento activo */
+    border-color: #007bff; /* Color del borde del elemento activo */
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d; /* Color del texto del elemento deshabilitado */
+    pointer-events: none; /* No permitir clics en el elemento deshabilitado */
+    background-color: #fff; /* Color de fondo del elemento deshabilitado */
+    border-color: #dee2e6; /* Color del borde del elemento deshabilitado */
+}
+</style>
+@section('content')
+  <h2> Servicios </h2>
+
+  <a style="background-color: green; 
+            padding: 10px 15px; 
+            color: white; 
+            text-decoration: none;
+            border-radius: 7px;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+            " 
+     href="{{route('servicios.create')}}"> + Agregar servicio </a>
+
+  <h4> Lista de Servicios </h4>
+  @if($servicios)
+  <table>
+    <tr>
+      @foreach($servicios as $item)
+        {{-- <td> <a href="{{route('servicios.show', $item)}}"> {{ $item->titulo }} </a> <br> {{ $item->descripcion}} </td> --}}
+        <td> <a style="margin-right: 80px" href="{{route('servicios.show', $item)}}"> {{ $item->titulo }} </a></td>
+      @endforeach
+    </tr>
+  </table>
+  @else
+    <h3> No existe ningun servicio que mostrar </h3>
+  @endif
+  <div class='pagination' style="width: 200px; height: 20px; margin: 35px 0">
+    {{ $servicios->links() }} </td>
+  </div>
+
+ @endsection

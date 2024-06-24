@@ -2,7 +2,17 @@
 
 @section('title', 'Servicios')
 
+  <!-- Bootstrap CSS v5.2.1 -->
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"
+  />
+
 @section('content')
+<div class="container">
+
   <h2> Servicios </h2>
 
   <a style="background-color: green; 
@@ -27,8 +37,24 @@
   @else
     <h3> No existe ningun servicio que mostrar </h3>
   @endif
-  <div style="width: 200px; height: 20px; margin: 35px 0">
-    <td colspan="4"> {{ $servicios->links() }} </td>
+  <div>
+    {{ $servicios->links('pagination::bootstrap-4') }} </td>
   </div>
-
+</div>
  @endsection
+
+ 
+<!-- Bootstrap JavaScript Libraries -->
+   <script
+   src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+   integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+   crossorigin="anonymous"
+ ></script>
+
+ <script
+   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+   integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+   crossorigin="anonymous"
+ ></script>
+
+

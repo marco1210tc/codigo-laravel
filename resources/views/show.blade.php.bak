@@ -39,9 +39,7 @@
   </div>
   <div style="margin: 20px 20px">   
     <form action="{{ route('servicios.destroy', $servicio) }}" method="POST" > 
-    @csrf 
-	  @method('DELETE')
-      <button class="btn btn-delete"> Eliminar </button>
+     @csrf @method('DELETE')
     </form>   
   </div>
 
