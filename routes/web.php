@@ -13,7 +13,6 @@ Route::view('nosotros', 'nosotros')->name('nosotros');
 //Route::resource('servicios', 'App\Http\Controllers\Servicios2Controller')->only('index', 'show');
 //Route::resource('servicios', 'App\Http\Controllers\Servicios2Controller')->except('index', 'show');
 // Route::resource('servicios', 'App\Http\Controllers\Servicios3Controller');
-Route::view('contacto', 'contacto')->name('contacto');
 
 Route::get('servicios', 'App\Http\Controllers\ServiciosController@index')->name('servicios.index');
 Route::get('servicios/crear', 'App\Http\Controllers\ServiciosController@create')->name('servicios.create');
@@ -26,5 +25,5 @@ Route::post('/servicios', 'App\Http\Controllers\ServiciosController@store')->nam
 Route::get('servicios/{id}', 'App\Http\Controllers\ServiciosController@show')->name('servicios.show')->where('id','[0-9]+');
 Route::delete('servicios/{servicio}', 'App\Http\Controllers\ServiciosController@destroy')->name('servicios.destroy');
 
-//Route::post('servicios', 'App\Http\Controllers\ServiciosController@update')->name('servicios.update');
-//Route::resource('servicios', ServiciosController::class)->name('POST','servicios.update');
+Route::view('contacto', 'contacto')->name('contacto');
+Route::post('contacto', 'App\Http\Controllers\ContactoController@store')->name('contacto.store');
