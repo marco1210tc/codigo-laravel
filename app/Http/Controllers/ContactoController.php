@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\MensajeRecibido;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Email;
 
 //use Illuminate\Http\Request; //eliminamos este recurso 
 //porque estamos usando el método request
@@ -42,10 +43,11 @@ class ContactoController extends Controller
             'asunto.required' => 'Ingresa el asunto',
             'mensaje.required' => 'Ingresa el mensaje',
         ]);
-        // return 'Datos validados';
+
         Mail::to('martold.1210@gmail.com')->send(new MensajeRecibido($mensaje));
         //dd(config('mail'));
-        return 'Mensaje enviado';
+        Email::create($mensaje);
+        return ('Mensaje enviado <br><a href="contacto"> Regresar </a>');
     }
 
     /**

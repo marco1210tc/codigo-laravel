@@ -4,8 +4,8 @@
 
 @section('content')
   <h2>Contacto</h2>
-
-  <div class="form contact-form">
+<div class="container-centered">
+  <div class="form">
     <form action="{{route('contacto.store')}}" method="POST">
       @csrf
       <div class="form-group">
@@ -39,4 +39,5 @@
       </div>
     </form>
   </div>
+</div>
 @endsection

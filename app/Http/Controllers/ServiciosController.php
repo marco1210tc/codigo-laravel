@@ -55,7 +55,7 @@ class ServiciosController extends Controller
         //     'descripcion' => 'required'
         // ]);
         // Servicio::create($camposv);
-
+        // dd($request);
         Servicio::create($request->validated());
         return redirect()->route('servicios.index');
     }

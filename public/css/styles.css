@@ -1,0 +1,23 @@
+* {
+  font-family: Roboto, Arial;
+}
+.activo a {
+  color: red;
+  text-decoration: underline;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.navbar {
+  font-size: 20px;
+  list-style: none;
+  padding: 15px 0px;
+}
+.container-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
