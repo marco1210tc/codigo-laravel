@@ -13,9 +13,13 @@
     </ul>
   @endif
 
+  @auth
+    
   @include('partials.validation-errors')
   <form action="{{ route('servicios.update', $servicio->id) }}" method="POST">
     @method('PATCH')
     @include('partials.form', ['btnText' => 'Actualizar'])
   </form>
+  @endauth
+  
 @endsection

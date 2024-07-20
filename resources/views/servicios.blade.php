@@ -15,6 +15,8 @@
 
     <h2> Servicios </h2>
 
+    @auth
+    
     <a style="background-color: green; 
               padding: 10px 15px;
               color: white; 
@@ -22,6 +24,7 @@
               border-radius: 7px;
               box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5)" href="{{route('servicios.create')}}"> + Agregar servicio 
     </a>
+    @endauth
 
     <h4 class="mt-3"> Lista de Servicios </h4>
     @if($servicios)

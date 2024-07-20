@@ -34,6 +34,8 @@
 <br>
 <div style="display: flex; justify-content: flex-start; align-items: center">
 
+  @auth
+      
   <div style="margin: 10px 20px"> 
     <a class="btn btn-edit" href="{{ route('servicios.edit', $servicio) }}"> Editar </a> 
   </div>
@@ -44,6 +46,7 @@
       <button class="btn btn-delete"> Eliminar </button>
     </form>   
   </div>
-
+  
+  @endauth
 </div>
 @endsection
