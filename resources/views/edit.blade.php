@@ -16,8 +16,12 @@
   @auth
     
   @include('partials.validation-errors')
-  <form action="{{ route('servicios.update', $servicio->id) }}" method="POST">
+  <form action="{{ route('servicios.update', $servicio->id) }}" method="POST" enctype="multipart/form-data">
     @method('PATCH')
+    
+    <img src="/storage/{{$servicio->image}}" width="100" height="100"
+    alt="imagen">
+
     @include('partials.form', ['btnText' => 'Actualizar'])
   </form>
   @endauth

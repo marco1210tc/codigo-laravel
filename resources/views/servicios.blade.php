@@ -27,17 +27,24 @@
     @endauth
 
     <h4 class="mt-3"> Lista de Servicios </h4>
+    
     @if($servicios)
-    <table>
-      <tr>
+      <div class="d-flex" >
         @foreach($servicios as $item)
           {{-- <td> <a href="{{route('servicios.show', $item)}}"> {{ $item->titulo }} </a> <br> {{ $item->descripcion}} </td> --}}
-          <td> <a style="margin-right: 80px" href="{{route('servicios.show', $item)}}"> {{ $item->titulo }} </a></td>
+          
+          <div class="col-2 d-flex flex-column align-items-center" >
+            @if ($item->image)
+              <img src="/storage/{{$item->image}}" width="50" height="50">
+            @endif
+            <a style="" href="{{route('servicios.show', $item)}}"> {{ $item->titulo }} </a>
+          </div>
+          
         @endforeach
-      </tr>
-    </table>
+     </div>
+  
     @else
-      <h3> No existe ningun servicio que mostrar </h3>
+      <h3> No existe ningún servicio que mostrar </h3>
     @endif
     <div class="mt-3">
       {{ $servicios->links('pagination::bootstrap-4') }}
@@ -46,7 +53,7 @@
 @endsection
 
  
-<!-- Bootstrap JavaScript Libraries -->
+{{-- <!-- Bootstrap JavaScript Libraries -->
    <script
    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -57,6 +64,6 @@
    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
    crossorigin="anonymous"
- ></script>
+ ></script> --}}
 
 

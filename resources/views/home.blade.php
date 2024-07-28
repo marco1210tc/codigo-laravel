@@ -5,7 +5,9 @@
 @section('content')
 
     @auth
-        {{ auth()->user()->name }}
+        Bienvenido(a) {{ auth()->user()->name }}        
+    @else
+        Bienvenido Invitado
     @endauth
 
 @endsection

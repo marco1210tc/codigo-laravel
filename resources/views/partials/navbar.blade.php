@@ -1,11 +1,3 @@
-{{-- <nav class="navbar"> --}}
-  {{-- {{(request()->routeIs('home'))}} --}}
-  {{-- <li class="{{ setActivo('home') }}"><a href="/">Home</a></li>
-  <li class="{{ setActivo('nosotros') }}"><a href="nosotros">Nosotros</a></li>
-  <li class="{{ setActivo('servicios') }}"><a href="servicios">Servicios</a></li>
-  <li class="{{ setActivo('contacto') }}"><a href="contacto">Contacto</a></li> --}}
-{{-- </nav> --}}
-
 <nav>
   <table class="navbar">
     {{-- {{(request()->routeIs('home'))}} --}}
@@ -18,7 +10,7 @@
         @guest
           <th><a href="{{ route('login') }}"> Login </a> | </th>
         @else
-          <th>
+          <th scope="col" colspan="3" >
             <a href="#" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
               Cerrar Sesión 

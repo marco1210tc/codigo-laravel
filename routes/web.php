@@ -4,10 +4,13 @@ use Dotenv\Util\Regex;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiciosController;
 
+
 // $servicios = [];
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function() {
+  return view('home');
+})->name('home');
 
 Route::resource('servicios', 'App\Http\Controllers\ServiciosController')
   ->names('servicios');

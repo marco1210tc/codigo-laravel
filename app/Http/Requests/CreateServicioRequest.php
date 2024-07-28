@@ -22,6 +22,7 @@ class CreateServicioRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'image' => 'required',
             'titulo' => 'required',
             'descripcion' => 'required'
         ];
@@ -29,8 +30,9 @@ class CreateServicioRequest extends FormRequest
 
     public function messages() {
         return [
-            'titulo.required' => 'Se necesita un titulo para el servicio',
-            'descripcion.require' => 'La descripcion es obligatoria'
+            'image.required' => 'Elija un archivo',
+            'titulo.required' => 'Se necesita un título para el servicio',
+            'descripcion.require' => 'La descripción es obligatoria'
         ];
         
     }

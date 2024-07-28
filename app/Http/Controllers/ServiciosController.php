@@ -6,7 +6,9 @@ use App\Models\Servicio as ModelsServicio;
 use Illuminate\Http\Request;
 // use DB;
 use App\Models\Servicio;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreateServicioRequest;
+use Illuminate\Contracts\Cache\Store;
 
 class ServiciosController extends Controller
 {
@@ -41,28 +43,10 @@ class ServiciosController extends Controller
      */
     public function store(CreateServicioRequest $request)
     {
-        // $title = request('name');
-        // $description = request('description');
-        
-        // Servicio::create([
-        //     'titulo'=> $title,  //poner aqui los campos de la tabla, example: 'titulo' y 'descripcion' son los campos en la BD
-        //     'descripcion' => $description
-        // ]);
-        // Servicio::create(request()->all());//no funciona
-
-        // Servicio::create([
-        //     'titulo' => request('name'),
-        //     'descripcion' => request('description')
-        // ]);
-
-        // $camposv = request()->validate([
-        //     'titulo' => 'required',
-        //     'descripcion' => 'required'
-        // ]);
-        // Servicio::create($camposv);
-        // dd($request);
-        Servicio::create($request->validated());
-        return redirect()->route('servicios.index');
+        $servicio = new Servicio($request->validated());
+        $servicio->image = $request->file('image')->store('images');
+        $servicio->save();
+        return redirect()->route('servicios.index')->with('estado', 'El servicio se creó correctamente.');
     }
 
     /**
@@ -88,8 +72,19 @@ class ServiciosController extends Controller
     public function update(CreateServicioRequest $request, string $id)
     {
         $servicio = Servicio::find($id);
-        //Servicio::update($request->validated());
-        $servicio->update($request->validated());
+
+        if ($request->hasFile('image')) {
+ 
+            if ($servicio->image && Storage::exists($servicio->image)) {
+                Storage::delete($servicio->image);
+            }
+            
+            $servicio->image = $request->file('image')->store('images');
+        }
+    
+        $servicio->fill($request->validated());
+        $servicio->save();
+    
         return redirect()->route('servicios.show', $servicio);
     }
 
@@ -98,6 +93,7 @@ class ServiciosController extends Controller
      */
     public function destroy(Servicio $servicio)
     {
+        Storage::delete($servicio->image);
         $servicio->delete();
         return redirect()->route('servicios.index');
     }

@@ -12,9 +12,9 @@
     </ul>
   @endif
 
-  @include('partials.validation-errors')
+  @include('partials.validation-errors')              
 
-  <form action="{{ route('servicios.store') }}" method="POST">
+  <form action="{{ route('servicios.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
       @include('partials.form', ['btnText' => 'Guardar'])
   </form>
