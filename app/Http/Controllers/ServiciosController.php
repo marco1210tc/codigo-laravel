@@ -10,6 +10,7 @@ use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use App\Events\ServicioSaved;
 use App\Http\Requests\CreateServicioRequest;
+use App\Models\Category;
 use Illuminate\Contracts\Cache\Store;
 
 class ServiciosController extends Controller
@@ -24,11 +25,7 @@ class ServiciosController extends Controller
 
     public function index()
     {
-        // $servicios = DB::table('servicios')->get();
-        //$servicios = Servicio::get();
-        //$servicios = Servicio::latest('titulo')->get();
-        // $servicios = Servicio::orderBy('titulo', 'asc')->get();
-        $servicios = Servicio::latest()->paginate(2);
+        $servicios = Servicio::with('category')->latest()->paginate(3);
         return view('servicios', compact('servicios'));
     }
 
@@ -37,7 +34,10 @@ class ServiciosController extends Controller
      */
     public function create()
     {
-        return view('create', ['servicio' => new Servicio]);
+        return view('create', [
+            'servicio' => new Servicio,
+            'categories' => Category::pluck('name', 'id'),
+        ]);
     }
 
     /**
@@ -76,7 +76,11 @@ class ServiciosController extends Controller
      */
     public function edit(string $id)
     {
-        return view('edit', ['servicio' => Servicio::find($id)]);
+        return view('edit', [
+            'servicio' => Servicio::find($id),
+            'categories' => Category::pluck('name', 'id'),
+        ]);
+
         //return view('edit', ['servicio']);
     }
 

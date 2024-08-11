@@ -19,6 +19,7 @@ Route::resource('servicios', 'App\Http\Controllers\ServiciosController')
 Route::view('nosotros', 'nosotros')->name('nosotros');
 Route::view('contacto', 'contacto')->name('contacto');
 Route::post('contacto', 'App\Http\Controllers\ContactoController@store')->name('contacto.store');
+Route::get('categorias/{category}', 'App\Http\Controllers\CategoryController@show')->name('categories.show');
 
 // Route::get('servicios', 'App\Http\Controllers\ServiciosController@index')->name('servicios.index');
 // Route::get('servicios/crear', 'App\Http\Controllers\ServiciosController@create')->name('servicios.create');

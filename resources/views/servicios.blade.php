@@ -2,68 +2,96 @@
 
 @section('title', 'Servicios')
 
+
   <!-- Bootstrap CSS v5.2.1 -->
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-    crossorigin="anonymous"
-  />
+  <link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+  crossorigin="anonymous"
+/>
+
 
 @section('content')
-  <div class="container">
 
-    <h2> Servicios </h2>
+<div class="container">
 
-    @auth
-    
-    <a style="background-color: green; 
-              padding: 10px 15px;
-              color: white; 
-              text-decoration: none;
-              border-radius: 7px;
-              box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5)" href="{{route('servicios.create')}}"> + Agregar servicio 
-    </a>
-    @endauth
+    @isset($category)
 
-    <h4 class="mt-3"> Lista de Servicios </h4>
-    
-    @if($servicios)
-      <div class="d-flex" >
-        @foreach($servicios as $item)
-          {{-- <td> <a href="{{route('servicios.show', $item)}}"> {{ $item->titulo }} </a> <br> {{ $item->descripcion}} </td> --}}
-          
-          <div class="col-2 d-flex flex-column align-items-center" >
-            @if ($item->image)
-              <img src="/storage/{{$item->image}}" width="50" height="50">
-            @endif
-            <a style="" href="{{route('servicios.show', $item)}}"> {{ $item->titulo }} </a>
-          </div>
-          
-        @endforeach
-     </div>
-  
-    @else
-      <h3> No existe ningún servicio que mostrar </h3>
-    @endif
-    <div class="mt-3">
-      {{ $servicios->links('pagination::bootstrap-4') }}
+    <div>
+        <div class="display-4 mb-0">
+            <h1>{{ $category->name }}</h1>
+        </div>
+
+        <span class="mb-2">
+            <a href="{{ route('servicios.index') }}"> Regresar a servicios </a>
+        </span>
     </div>
-  </div>
+
+    
+    @else
+
+        <h1 class="display-4 mb-0">Servicios</h1>
+        
+    @endisset
+
+    <tr>
+        @auth
+            <td colspan="5">
+                <a class="btn btn-primary" href="{{ route('servicios.create') }}"> + Nuevo Servicio</a>
+            </td>
+        @endauth
+    </tr>
+
+    <hr class="mt-3">
+
+    <tr>
+        <td colspan="5">
+            <p class="lead text-secondary">Listado de Servicio</p>
+            <div class="d-flex flex-wrap justify-content-between align-items-start">
+                @forelse($servicios as $servicio)
+                    <div class="card border-0 shadow-sm mt-4 mx-auto" style="width: 18rem">
+                        @if ($servicio->image)
+                            <img class="card-img-top" style="height: 150px; object-fit: cover"
+                                src="/storage/{{ $servicio->image }}" alt="{{ $servicio->titulo }}">
+                        @endif
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ route('servicios.show', $servicio) }}">{{ $servicio->titulo }}</a>
+                            </h5>
+                            <h6 class="card-subtitle">{{ $servicio->created_at->format('d/m/Y') }}</h6>
+                            <p class="card-text text-truncate">{{ $servicio->descripcion }}</p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{{ route('servicios.show', $servicio) }}" class="btn btn-primary btn-sm">
+                                    Ver más...
+                                </a>
+                                <!-- Preguntamos si tenemos definido category_id
+                                    y solo asi mostramos el enlace, de lo cobtrario no -->
+                                @if ($servicio->category_id)
+                                    <a href="{{route('categories.show', $servicio->category)}}" 
+                                        class="badge badge-secondary text-white bg-secondary text-sm text-decoration-none">
+                                        {{ $servicio->category->name }}
+                                    </a>
+                                @endif
+        
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="card">
+                        <div class="card-body">
+                            No hay servicios para mostrar
+                        </div>
+                    </div>
+                @endforelse
+            </div>
+
+            <div class="mt-4">
+                {{ $servicios->links('pagination::bootstrap-4') }}
+            </div>
+        </td>
+    </tr>
+
+</div>
 @endsection
-
- 
-{{-- <!-- Bootstrap JavaScript Libraries -->
-   <script
-   src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-   integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-   crossorigin="anonymous"
- ></script>
-
- <script
-   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-   integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-   crossorigin="anonymous"
- ></script> --}}
-
-
